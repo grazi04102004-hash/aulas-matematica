@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aulas particulares de Matemática</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f2ff;--card:#fff;--ink:#1f1b3a;--mut:#6b6788;--pri:#5b4bdb;--pri2:#8a7bff;--acc:#ffb84d;--line:#e3e0f5;--chip:#f0eeff;--err:#d6336c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14122a;--card:#1e1b3d;--ink:#f2f0ff;--mut:#a9a5cf;--line:#34305f;--chip:#2a2650;--pri:#8a7bff;--pri2:#5b4bdb}}
+:root[data-theme="dark"]{--bg:#14122a;--card:#1e1b3d;--ink:#f2f0ff;--mut:#a9a5cf;--line:#34305f;--chip:#2a2650;--pri:#8a7bff;--pri2:#5b4bdb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:620px;margin:0 auto;padding:20px 16px 48px}
+.hero{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border-radius:24px;padding:28px 24px;position:relative;overflow:hidden}
+.hero .sym{position:absolute;right:-6px;top:-18px;font-size:120px;font-weight:800;opacity:.14;line-height:1}
+.hero small{display:inline-block;background:rgba(255,255,255,.2);padding:4px 12px;border-radius:99px;font-weight:700;font-size:13px}
+.hero h1{margin:12px 0 8px;font-size:26px;line-height:1.2}
+.hero p{margin:0;opacity:.95;font-size:15px}
+.bar{display:flex;gap:6px;margin:20px 0 6px}
+.bar i{flex:1;height:6px;border-radius:9px;background:var(--line);transition:.3s}
+.bar i.on{background:var(--pri)}
+.step-l{font-size:13px;color:var(--mut);font-weight:700;margin-bottom:10px}
+.card{background:var(--card);border-radius:20px;padding:22px;box-shadow:0 6px 24px rgba(60,40,160,.08)}
+.step{display:none}.step.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h2{margin:0 0 16px;font-size:20px}
+label,.q{display:block;font-weight:800;margin:18px 0 8px;font-size:15px}
+.q em{font-style:normal;color:var(--mut);font-weight:600}
+input[type=text],input[type=tel],textarea{width:100%;font:inherit;color:var(--ink);background:var(--chip);border:2px solid transparent;border-radius:14px;padding:13px 14px;outline:none}
+input:focus,textarea:focus{border-color:var(--pri)}
+textarea{min-height:84px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-weight:700;color:var(--ink);background:var(--chip);border:2px solid transparent;border-radius:12px;padding:10px 14px;cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--pri2)}
+.chip.on{background:var(--pri);color:#fff}
+.opts{display:grid;gap:8px}
+.opts .chip{text-align:left;padding:14px}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:24px}
+.btn{font:inherit;font-weight:800;border:0;border-radius:14px;padding:14px 22px;cursor:pointer}
+.btn.p{background:var(--pri);color:#fff;flex:1}
+.btn.g{background:transparent;color:var(--mut)}
+.btn.wa{background:#25d366;color:#fff;width:100%;font-size:17px;text-decoration:none;display:block;text-align:center}
+.err{color:var(--err);font-weight:700;font-size:14px;min-height:20px;margin-top:12px}
+.sum{background:var(--chip);border-radius:14px;padding:14px 16px;margin:12px 0 18px;font-size:14px}
+.sum div{padding:3px 0}.sum b{color:var(--pri)}
+.hide{display:none}
+.done{text-align:center;padding:10px 0}.done .big{font-size:56px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="sym">∑</div>
+    <small>🎓 UFMG · +4 anos de experiência</small>
+    <h1>Aulas particulares de Matemática</h1>
+    <p>Oi, tudo bem? Uma explicação calma e personalizada muda a relação de qualquer aluno com os números. Responde rapidinho aqui e eu te chamo no WhatsApp!</p>
+  </header>
+
+  <div class="bar" id="bar"><i class="on"></i><i></i><i></i></div>
+  <div class="step-l" id="sl">Etapa 1 de 3 · Seus dados</div>
+
+  <div class="card">
+    <section class="step on" data-s="1">
+      <h2>Vamos nos conhecer 👋</h2>
+      <label for="nome">Qual é o seu nome? <em>(e o do aluno, se você for o responsável)</em></label>
+      <input type="text" id="nome" autocomplete="name">
+      <label for="whats">Qual é o seu WhatsApp?</label>
+      <input type="tel" id="whats" placeholder="(31) 9 0000-0000" autocomplete="tel">
+    </section>
+
+    <section class="step" data-s="2">
+      <h2>Um pouco de você 📚</h2>
+      <div class="q">Você é de qual série?</div>
+      <div class="chips" data-g="serie" data-mode="one"></div>
+      <div class="q">Qual é o principal objetivo agora?</div>
+      <div class="opts" data-g="objetivo" data-mode="one">
+        <button type="button" class="chip" data-v="Reforço escolar e acompanhamento contínuo">📈 Reforço escolar e acompanhamento contínuo</button>
+        <button type="button" class="chip" data-v="Preparação para uma prova específica / recuperação">📝 Preparação para uma prova específica / recuperação</button>
+        <button type="button" class="chip" data-v="Aprender do zero / desenvolver uma nova habilidade">🌱 Aprender do zero / desenvolver uma nova habilidade</button>
+      </div>
+      <label for="dif">Qual é a maior dificuldade hoje? <em>(opcional)</em></label>
+      <textarea id="dif" placeholder="Conta rapidinho…"></textarea>
+    </section>
+
+    <section class="step" data-s="3">
+      <h2>Sua disponibilidade 🗓️</h2>
+      <div class="q">Online ou presencial?</div>
+      <div class="opts" data-g="modo" data-mode="one">
+        <button type="button" class="chip" data-v="100% Online (ao vivo)">💻 100% online (ao vivo)</button>
+        <button type="button" class="chip" data-v="Presencial (em Belo Horizonte — informe seu endereço abaixo, se quiser)">🏠 Presencial em Belo Horizonte</button>
+      </div>
+      <div id="endBox" class="hide">
+        <label for="end">Endereço <em>(opcional)</em></label>
+        <input type="text" id="end" autocomplete="street-address">
+      </div>
+      <div class="q">Quais horários funcionam melhor? <em>(pode marcar vários)</em></div>
+      <div class="chips" data-g="horarios" data-mode="multi"></div>
+      <input type="text" id="outroH" placeholder="Outro horário (opcional)" style="margin-top:8px">
+      <div class="q">Quais dias funcionam melhor? <em>(pode marcar vários)</em></div>
+      <div class="chips" data-g="dias" data-mode="multi"></div>
+    </section>
+
+    <section class="step" data-s="4">
+      <div class="done">
+        <div class="big">🎉</div>
+        <h2>Inscrição enviada!</h2>
+        <p style="color:var(--mut);margin:0">Sua inscrição foi enviada! Toque no botão abaixo para me avisar no WhatsApp e já alinharmos os horários.</p>
+      </div>
+      <div class="sum" id="sum"></div>
+      <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener">Avisar no WhatsApp</a>
+    </section>
+
+    <div class="err" id="err"></div>
+    <div class="nav" id="nav">
+      <button class="btn g" id="back" type="button">← Voltar</button>
+      <button class="btn p" id="next" type="button">Continuar →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var NUM="5531988122947";
+var D={serie:"",objetivo:"",modo:"",horarios:[],dias:[]};
+var step=1,titles=["Seus dados","Sobre você","Disponibilidade","Confirmar"];
+function mk(g,list){var c=document.querySelector('[data-g="'+g+'"]');list.forEach(function(v){var b=document.createElement("button");b.type="button";b.className="chip";b.dataset.v=v;b.textContent=v.replace("- ","-");c.appendChild(b)})}
+mk("serie",["3º ano","4º ano","5º ano","6º ano","7º ano","8º ano","9º ano","1º ano EM","2º ano EM","3º ano EM"]);
+mk("horarios",["13:00","14:00","15:00","16:00","17:00","18:00"]);
+mk("dias",["Segunda-feira","Terça-feira","Quarta-feira","Quinta- feira","Sexta- feira","Sábado"]);
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".chip");if(!b)return;
+  var g=b.parentElement.dataset.g,m=b.parentElement.dataset.mode,v=b.dataset.v;
+  if(m==="one"){b.parentElement.querySelectorAll(".chip").forEach(function(x){x.classList.remove("on")});b.classList.add("on");D[g]=v;
+    if(g==="modo")document.getElementById("endBox").classList.toggle("hide",v.indexOf("Presencial")<0)}
+  else{b.classList.toggle("on");var i=D[g].indexOf(v);if(i<0)D[g].push(v);else D[g].splice(i,1)}
+  document.getElementById("err").textContent="";
+});
+function val(){
+  var n=document.getElementById("nome").value.trim(),w=document.getElementById("whats").value.replace(/\D/g,"");
+  if(step===1){if(!n)return"Me diz seu nome, por favor 🙂";if(w.length<10)return"Confere o WhatsApp com DDD, por favor."}
+  if(step===2){if(!D.serie)return"Escolha a série.";if(!D.objetivo)return"Escolha o objetivo."}
+  if(step===3){if(!D.modo)return"Escolha online ou presencial.";if(!D.horarios.length&&!document.getElementById("outroH").value.trim())return"Marque ao menos um horário.";if(!D.dias.length)return"Marque ao menos um dia."}
+  return""}
+function msg(){
+  var g=function(id){return document.getElementById(id).value.trim()};
+  var h=D.horarios.slice();if(g("outroH"))h.push(g("outroH"));
+  var L=[["Nome",g("nome")],["WhatsApp",g("whats")],["Série",D.serie],["Objetivo",D.objetivo],["Maior dificuldade",g("dif")],["Modalidade",D.modo.indexOf("Presencial")===0?"Presencial em Belo Horizonte":"100% online (ao vivo)"],["Endereço",g("end")],["Horários",h.join(", ")],["Dias",D.dias.join(", ").replace(/- /g,"-")]].filter(function(x){return x[1]});
+  return L}
+var FORM="https://docs.google.com/forms/d/e/1FAIpQLSdNmlFc_mkUfcV36qxgtZJhuosqBivMRC6F5r6IKe60PFnRhw/formResponse",sent=false;
+function send(){
+  if(sent)return;sent=true;
+  var g=function(id){return document.getElementById(id).value.trim()},p=new URLSearchParams();
+  p.append("entry.391122785",g("nome"));
+  p.append("entry.1241075436",g("whats"));
+  p.append("entry.163877840",D.serie);
+  p.append("entry.1934159710",D.objetivo);
+  p.append("entry.1792381291",g("dif"));
+  p.append("entry.1034199029",D.modo);
+  p.append("entry.705086483",g("end"));
+  D.horarios.forEach(function(h){p.append("entry.1781200940",h)});
+  if(g("outroH")){p.append("entry.1781200940","__other_option__");p.append("entry.1781200940.other_option_response",g("outroH"))}
+  D.dias.forEach(function(d){p.append("entry.40544185",d)});
+  p.append("pageHistory","0,1,2");
+  try{fetch(FORM,{method:"POST",mode:"no-cors",body:p})}catch(e){}
+}
+function show(){
+  document.querySelectorAll(".step").forEach(function(s){s.classList.toggle("on",+s.dataset.s===step)});
+  document.querySelectorAll("#bar i").forEach(function(i,k){i.classList.toggle("on",k<Math.min(step,3))});
+  document.getElementById("sl").textContent=step<4?"Etapa "+step+" de 3 · "+titles[step-1]:"Última etapa 🎉";
+  document.getElementById("back").style.visibility=step>1&&step<4?"visible":"hidden";
+  document.getElementById("next").textContent=step===3?"Enviar inscrição ✓":"Continuar →";
+  document.getElementById("next").style.display=step===4?"none":"block";
+  document.getElementById("err").textContent="";
+  if(step===4){var L=msg();
+    document.getElementById("sum").innerHTML=L.map(function(x){return"<div><b>"+x[0]+":</b> "+x[1].replace(/</g,"&lt;")+"</div>"}).join("");
+    var t="Oi! Acabei de preencher a inscrição para aulas particulares de Matemática 📐\n\n"+L.map(function(x){return"*"+x[0]+":* "+x[1]}).join("\n");
+    document.getElementById("wa").href="https://wa.me/"+NUM+"?text="+encodeURIComponent(t)}
+  window.scrollTo({top:0,behavior:"smooth"})}
+document.getElementById("next").onclick=function(){var e=val();if(e){document.getElementById("err").textContent=e;return}if(step===3)send();step++;show()};
+document.getElementById("back").onclick=function(){if(step>1){step--;show()}};
+show();
+</script>
+</body>
+</html>
